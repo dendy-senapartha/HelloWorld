@@ -2,17 +2,17 @@ package com.example.helloworld;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
     private EditText txtUsername;
     private EditText txtPassword;
@@ -39,5 +39,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "button login di tekan", Toast.LENGTH_LONG).show();
         Toast.makeText(getApplicationContext(), txtUsername.getText(), Toast.LENGTH_LONG).show();
         Toast.makeText(getApplicationContext(), txtPassword.getText(), Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }
