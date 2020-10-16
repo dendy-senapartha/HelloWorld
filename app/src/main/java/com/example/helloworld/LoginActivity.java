@@ -35,10 +35,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void onClickBtnLogin(){
+    private void onClickBtnLogin() {
         Toast.makeText(getApplicationContext(), "button login di tekan", Toast.LENGTH_LONG).show();
         Toast.makeText(getApplicationContext(), txtUsername.getText(), Toast.LENGTH_LONG).show();
         Toast.makeText(getApplicationContext(), txtPassword.getText(), Toast.LENGTH_LONG).show();
-        startActivity(new Intent(this, HomeActivity.class));
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("COBA_INTENT_EXTRA", "Percobaan ");
+        startActivity(intent);
     }
 }

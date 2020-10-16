@@ -29,6 +29,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        String getExtra = getIntent().getStringExtra("COBA_INTENT_EXTRA");
+        Log.i(TAG, "onCreate: " + getExtra);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragmentTop, new FragmentTop());
         fragmentTransaction.replace(R.id.fragmentBotom, new FragmentBottom());
