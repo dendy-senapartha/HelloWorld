@@ -1,5 +1,7 @@
 package com.example.helloworld;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -9,6 +11,8 @@ import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.helloworld.utils.BroadcastReciver;
 
 /**
  * Project: HelloWorld

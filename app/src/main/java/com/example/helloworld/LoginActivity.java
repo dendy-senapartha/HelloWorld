@@ -1,14 +1,24 @@
 package com.example.helloworld;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.helloworld.utils.BroadcastReciver;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,8 +41,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onClickBtnLogin();
+//                onNotificationBtnClicked();
             }
         });
+        BroadcastReciver broadcastReciver =  new BroadcastReciver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        this.registerReceiver(broadcastReciver, intentFilter);
     }
 
     private void onClickBtnLogin() {
@@ -42,5 +57,25 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("COBA_INTENT_EXTRA", "Percobaan ");
         startActivity(intent);
+    }
+
+    private void onNotificationBtnClicked() {
+        String CHANNEL_ID = "MY_NOTIF_CHANNEL";
+
+        //persiapakan channel
+        NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, "My channel", NotificationManager.IMPORTANCE_HIGH);
+        //persiapkan notif manager
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        //dibuat channelnya
+        notificationManager.createNotificationChannel(mChannel);
+        //presiapkan notifikasinya
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("My Notification")
+                .setContentText("My Notification content")
+                .build();
+
+        int notificationID = 0;
+        notificationManager.notify(notificationID, notification);
     }
 }
