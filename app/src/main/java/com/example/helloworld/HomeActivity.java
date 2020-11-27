@@ -33,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragmentTop, new FragmentTop());
         fragmentTransaction.replace(R.id.fragmentBotom, new FragmentBottom());
         fragmentTransaction.commit();
+
     }
 
     protected void onResume() {
